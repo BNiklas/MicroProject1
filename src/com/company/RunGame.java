@@ -28,12 +28,21 @@ public class RunGame {
             Random rand = new Random();
             int tempx = rand.nextInt(PLAY_AREA_WIDTH);
             int tempy = rand.nextInt(PLAY_AREA_HEIGHT);
-            if (!(tempx == ourPlayer.xPlayer && tempy == ourPlayer.yPlayer)) {
-                for (int j = 0; j < i; j++) {
-                    if (!(tempx == monsters[j].xMonster && tempy == monsters[i].yMonster))
-                        monsters[i].xMonster = tempx;
+
+            while (tempx == ourPlayer.xPlayer && tempy == ourPlayer.yPlayer) {
+                tempx = rand.nextInt(PLAY_AREA_WIDTH);
+                tempy = rand.nextInt(PLAY_AREA_HEIGHT);
+            }
+
+            for (int j = 0; j < i; j++) {
+                if (tempx == monsters[j].xMonster && tempy == monsters[j].yMonster) {
+                    tempx = rand.nextInt(PLAY_AREA_WIDTH);
+                    tempy = rand.nextInt(PLAY_AREA_HEIGHT);
+                    j = 0;
                 }
             }
+
+            monsters[i] = new Monster(tempx, tempy);
         }
 
 
@@ -43,21 +52,22 @@ public class RunGame {
         // init drawplayfield
         DrawPlayfield playfield = new DrawPlayfield();
 
-        // while loop for the game, including
-        //      movement method
-        //      player method
-        //      monster method
+        // while loop for the game, including playfield method and movement method
         while (ourPlayer.statusPlayer) {
             terminal.clearScreen();
             playfield.drawPlay(terminal, ourPlayer, monsters);
-            if (move.charMove(terminal, ourPlayer, monsters)){
+            if (move.charMove(terminal, ourPlayer, monsters)) {
                 continue;
             }
-
         }
+        printText(10,10,"Game Over", terminal);
+    }
 
-
-        // game over
-
+    private static void printText(int x, int y, String message, Terminal terminal) {
+        for (int i = 0; i < message.length(); i++) {
+            terminal.moveCursor(x, y);
+            terminal.putCharacter(message.charAt(i));
+            x=x+1;
+        }
     }
 }
