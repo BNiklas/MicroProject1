@@ -16,7 +16,7 @@ public class Movement {
 
                 switch (key.getKind()) {
                     case ArrowDown:
-                        player.yPlayer += player.yPlayer > 19 ? 0 : 1;
+                        player.yPlayer += player.yPlayer > RunGame.PLAY_AREA_HEIGHT-1 ? 0 : 1;
                         break;
                     case ArrowUp:
                         player.yPlayer -= 1;
@@ -25,7 +25,7 @@ public class Movement {
                         player.xPlayer -= 1;
                         break;
                     case ArrowRight:
-                        player.xPlayer += player.xPlayer > 19 ? 0 : 1;
+                        player.xPlayer += player.xPlayer > RunGame.PLAY_AREA_WIDTH-1 ? 0 : 1;
                         break;
                 }
 
