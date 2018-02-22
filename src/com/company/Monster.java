@@ -3,11 +3,13 @@ package com.company;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
+
 import java.nio.charset.Charset;
 
 public class Monster {
     public int xMonster;
     public int yMonster;
+    public float speed = 0.7f;
 
     public Monster(int x, int y) {
         this.xMonster = x;
@@ -30,6 +32,54 @@ public class Monster {
         this.yMonster = yMonster;
     }
 
+    public void moveMonster(Player player) {
+
+        int xDiff = player.xPlayer - this.xMonster;
+        int yDiff = player.yPlayer - this.yMonster;
+
+
+        if (yDiff != 0 && Math.abs(xDiff) < Math.abs(yDiff)) {
+            if (yDiff < 0)
+                this.yMonster--;
+            else
+                this.yMonster++;
+        }
+
+        else if (xDiff != 0 && Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff < 0)
+                this.xMonster--;
+            else
+                this.xMonster++;
+        }
+
+//        if (yDiff == 0) {
+//            if (xDiff < 0)
+//                this.xMonster--;
+//            else
+//                this.xMonster++;
+//
+//        } else if (xDiff == 0) {
+//            if (yDiff < 0)
+//                this.yMonster--;
+//            else
+//                this.yMonster++;
+//
+//        } else if (xDiff < yDiff) {
+//            if (yDiff < 0)
+//                this.yMonster--;
+//            else
+//                this.yMonster++;
+//
+//        } else if (xDiff > yDiff) {
+//            if (xDiff < 0)
+//                this.xMonster--;
+//            else
+//                this.xMonster++;
+//        }
+
+
+    }
+
     //Monster class
-    //   -monster position
+    //   -this position
 }

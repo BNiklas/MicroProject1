@@ -13,6 +13,7 @@ public class Movement {
             Thread.sleep(5);
             key = terminal.readInput();
             if (key != null) {
+
                 switch (key.getKind()) {
                     case ArrowDown:
                         player.yPlayer += 1;
@@ -27,11 +28,21 @@ public class Movement {
                         player.xPlayer += 1;
                         break;
                 }
+
+                for (int i = 0; i < monsters.length; i++) {
+                    monsters[i].moveMonster(player);
+                    if (monsters[i].yMonster == player.yPlayer &&
+                            monsters[i].xMonster == player.xPlayer)
+                        player.statusPlayer = false;
+                }
             }
         }
         while(key == null);
         return true;
     }
+
+
+
     //Movement
     //   -button press
     //   -player move
