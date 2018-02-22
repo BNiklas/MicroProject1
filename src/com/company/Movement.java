@@ -16,7 +16,7 @@ public class Movement {
 
                 switch (key.getKind()) {
                     case ArrowDown:
-                        player.yPlayer += 1;
+                        player.yPlayer += player.yPlayer > 19 ? 0 : 1;
                         break;
                     case ArrowUp:
                         player.yPlayer -= 1;
@@ -25,12 +25,22 @@ public class Movement {
                         player.xPlayer -= 1;
                         break;
                     case ArrowRight:
-                        player.xPlayer += 1;
+                        player.xPlayer += player.xPlayer > 19 ? 0 : 1;
                         break;
                 }
 
                 for (int i = 0; i < monsters.length; i++) {
+
                     monsters[i].moveMonster(player);
+
+                    for (int j = 0; j <= i; j++) {
+                        if (monsters[i].xMonster == monsters[j].xMonster &&
+                                monsters[i].yMonster == monsters[j].yMonster) {
+                            monsters[j].yMonster += 0;
+                            monsters[j].xMonster += 0;
+                        }
+                    }
+
                     if (monsters[i].yMonster == player.yPlayer &&
                             monsters[i].xMonster == player.xPlayer)
                         player.statusPlayer = false;

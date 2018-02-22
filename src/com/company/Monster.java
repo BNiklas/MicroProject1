@@ -9,7 +9,6 @@ import java.nio.charset.Charset;
 public class Monster {
     public int xMonster;
     public int yMonster;
-    public float speed = 0.7f;
 
     public Monster(int x, int y) {
         this.xMonster = x;
@@ -51,33 +50,6 @@ public class Monster {
             else
                 this.xMonster++;
         }
-
-//        if (yDiff == 0) {
-//            if (xDiff < 0)
-//                this.xMonster--;
-//            else
-//                this.xMonster++;
-//
-//        } else if (xDiff == 0) {
-//            if (yDiff < 0)
-//                this.yMonster--;
-//            else
-//                this.yMonster++;
-//
-//        } else if (xDiff < yDiff) {
-//            if (yDiff < 0)
-//                this.yMonster--;
-//            else
-//                this.yMonster++;
-//
-//        } else if (xDiff > yDiff) {
-//            if (xDiff < 0)
-//                this.xMonster--;
-//            else
-//                this.xMonster++;
-//        }
-
-
     }
 
     //Monster class
