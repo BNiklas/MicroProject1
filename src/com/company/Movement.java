@@ -6,6 +6,32 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.nio.charset.Charset;
 
 public class Movement {
+    public boolean charMove(Terminal terminal, Player player, Monster[] monsters) throws InterruptedException {
+        //Wait for a key to be pressed
+        Key key;
+        do {
+            Thread.sleep(5);
+            key = terminal.readInput();
+            if (key != null) {
+                switch (key.getKind()) {
+                    case ArrowDown:
+                        player.yPlayer += 1;
+                        break;
+                    case ArrowUp:
+                        player.yPlayer -= 1;
+                        break;
+                    case ArrowLeft:
+                        player.xPlayer -= 1;
+                        break;
+                    case ArrowRight:
+                        player.xPlayer += 1;
+                        break;
+                }
+            }
+        }
+        while(key == null);
+        return true;
+    }
     //Movement
     //   -button press
     //   -player move

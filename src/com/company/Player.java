@@ -11,8 +11,8 @@ public class Player {
     public boolean statusPlayer = true;
 
     public Player() {
-        this.xPlayer = 0;
-        this.yPlayer = 0;
+        this.xPlayer = 1;
+        this.yPlayer = 10;
     }
 
     public int getxPlayer() {
