@@ -8,8 +8,8 @@ import java.nio.charset.Charset;
 import java.util.Random;
 
 public class RunGame {
-    private final int PLAY_AREA_HEIGHT = 20;
-    private final int PLAY_AREA_WIDTH = 20;
+    public static final int PLAY_AREA_HEIGHT = 20;
+    public static final int PLAY_AREA_WIDTH = 20;
 
     public void runGame() throws InterruptedException {
 
@@ -24,11 +24,18 @@ public class RunGame {
 
         // init monster objects
         Monster[] monsters = new Monster[4];
-        for (int i = 0; i < monsters.length; i++) {//(Monster item : monsters) {
+        for (int i = 0; i < monsters.length; i++) {
             Random rand = new Random();
-            monsters[i] = new Monster(rand.nextInt(PLAY_AREA_HEIGHT), rand.nextInt(PLAY_AREA_WIDTH));
+            int tempx = rand.nextInt(PLAY_AREA_WIDTH);
+            int tempy = rand.nextInt(PLAY_AREA_HEIGHT);
+            if (!(tempx == ourPlayer.xPlayer && tempy == ourPlayer.yPlayer)) {
+                for (int j = 0; j < i; j++) {
+                    if (!(tempx == monsters[j].xMonster && tempy == monsters[i].yMonster))
+                        monsters[i].xMonster = tempx;
+                }
+            }
         }
-        System.out.println(monsters[0].xMonster + "\n" + monsters[0].yMonster);
+
 
         // init movements objects
         Movement move = new Movement();
