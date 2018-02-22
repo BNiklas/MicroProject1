@@ -6,13 +6,11 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.nio.charset.Charset;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 	// here we start our game by calling RunGame
 
+        RunGame run = new RunGame();
+        run.runGame();
 
-        float f = 3.940000005f;
-        double d = 3.940000005;
-
-        System.out.println((int) f + "\n" + (int) d);
     }
 }
